@@ -1,0 +1,27 @@
+{
+  "name": "proyecto-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ronaldcdz/Proyecto-Final-Sistema-de-Elecciones.git"
+  },
+  "author": "Ronald Cadiz, Eury Nuñez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ronaldcdz/Proyecto-Final-Sistema-de-Elecciones/issues"
+  },
+  "homepage": "https://github.com/Ronaldcdz/Proyecto-Final-Sistema-de-Elecciones#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.1"
+  }
+}
