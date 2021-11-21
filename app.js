@@ -7,8 +7,8 @@ const expressHbs = require("express-handlebars");
 
 
 // Importando Rutas
-const homeRoute = require("./routes/elector");
-
+const electorRoute = require("./routes/elector");
+const adminRoute = require("./routes/admin");
 
 
 // Configurando el engine (motor de renderización de vistas)
@@ -34,7 +34,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 // Usando las rutas para los middleware
-app.use(homeRoute);
+app.use(electorRoute);                      // Midlleware para el Elector
+
+app.use("/admin", adminRoute);              // Middleware para el Admin
 
 
 // Importando el controlador de error
