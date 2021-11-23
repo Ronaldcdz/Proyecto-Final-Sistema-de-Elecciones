@@ -9,4 +9,18 @@ router.get("/", adminController.GetHome);
 
 router.get("/elective-position", adminController.GetElectivePosition);
 
+// Ruta encargada de redireccionar a los metodos de crear del controlador Admin 
+router.get("/elective-position/add-elective-position", adminController.GetCreateElectivePosition);
+router.post("/elective-position/add-elective-position", adminController.PostCreateElectivePosition);
+
+
+// Ruta encargada de redireccionar a los metodos de editar del controlador Admin 
+router.get("/elective-position/edit-elective-position/:electivePositionId", adminController.GetEditElectivePosition);
+router.post("/elective-position/edit-elective-position", adminController.PostEditElectivePosition);
+
+
+
+// Ruta encargada de redireccionar al  de editar del controlador Admin 
+router.post("/elective-position/delete-elective-position", adminController.PostDeleteElectivePosition);
+
 module.exports = router;

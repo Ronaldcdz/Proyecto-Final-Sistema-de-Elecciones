@@ -5,6 +5,10 @@ const path = require("path");
 const app = express();
 const expressHbs = require("express-handlebars");
 
+// Importando variables relacionadas a la base de datos
+const sequelize = require("./util/database");                   //Objeto sequilize ya configurado
+const ElectivePosition = require("./models/ElectivePosition");
+
 
 // Importando Rutas
 const electorRoute = require("./routes/elector");
@@ -45,5 +49,13 @@ app.use("/", errorController.Get404);
 
 
 
-// Creando el servidor en el puerto 8080
-app.listen(8080);
+// Creando el servidor en el puerto 8080 si se sincroniza la base de datos
+
+sequelize.sync().then(result => {
+    
+    app.listen(8080);
+
+}).catch(error => {
+    console.log("Acaba de ocurrir el siguiente error: "+ error);
+});
+
