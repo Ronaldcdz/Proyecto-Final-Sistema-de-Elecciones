@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const electorController = require("../controllers/elector/ElectorController");
+const electorController = require("../../controllers/elector/ElectorController");
 
 
 
