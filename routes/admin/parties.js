@@ -5,7 +5,7 @@ const partiesController = require("../../controllers/admin/PartiesController");
 
 router.get("/parties", partiesController.GetHome);
 
-
+router.get("/parties/add-parties", partiesController.GetCreateParties);
 
 
 
