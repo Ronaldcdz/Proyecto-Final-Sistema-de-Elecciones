@@ -14,6 +14,7 @@ const ElectivePosition = require("./models/ElectivePosition");
 const electorRoute = require("./routes/elector/elector");
 const electivePositionRoute = require("./routes/admin/electivePosition");
 const partiesRoute = require("./routes/admin/parties");
+const candidateRoute = require("./routes/admin/candidate");
 
 // Configurando el engine (motor de renderización de vistas)
 app.engine("hbs", expressHbs({
@@ -44,7 +45,7 @@ app.use("/admin", electivePositionRoute);              // Middleware para el Adm
 
 app.use("/admin", partiesRoute);                        // Midllewarre para los Partidos
 
-
+app.use("/admin", candidateRoute);                  //Midllewarre para los candidatos
 // Importando el controlador de error
 const errorController = require("./controllers/ErrorController");
 app.use("/", errorController.Get404);
