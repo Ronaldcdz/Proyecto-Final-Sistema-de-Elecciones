@@ -6,52 +6,58 @@
 
         <div class="card">
             <div class="card-header text-light bg-dark">
-                <h4 class="text-center" name="datosPersonales">{{#if editMode}}Editar Puesto Electivo{{else}}Agregar Puesto Electivo{{/if}}</h4>
+                <h4 class="text-center" name="datosPersonales">{{#if editMode}}Editar Puesto Electivo{{else}}Agregar
+                    Puesto Electivo{{/if}}</h4>
             </div>
 
             <div class="card-body">
 
-                <form action="{{#if editMode}}/admin/elective-position/edit-elective-position{{else}}/admin/elective-position/add-elective-position{{/if}}" method="POST">
+                <form
+                    action="{{#if editMode}}/admin/elective-position/edit-elective-position{{else}}/admin/elective-position/add-elective-position{{/if}}"
+                    method="POST">
 
-                    <div class="mt-3 mb-3"> 
+                    <div class="mt-3 mb-3">
                         <label for="name" class="form-label">Nombre del Puesto Electivo:</label>
-                        <input type="text" id="name"  class="form-control" maxlength="200"
-                            placeholder="Escriba el nombre del puesto electivo" value="{{#if editMode}}{{electivePosition.name}}{{/if}}" name="name" required/ >
+                        <input type="text" id="name" class="form-control" maxlength="200"
+                            placeholder="Escriba el nombre del puesto electivo"
+                            value="{{#if editMode}}{{electivePosition.name}}{{/if}}" name="name" required/>
                     </div>
 
                     <div class="mt-3 mb-3">
                         <label for="description" class="form-label">Descripci&oacute;n:</label>
                         <input type="text" id="description" class="form-control" maxlength="200"
-                            placeholder="Escriba de qué se trata este puesto electivo" value="{{#if editMode}}{{electivePosition.description}}{{/if}}" name="description" required/>
+                            placeholder="Escriba de qué se trata este puesto electivo"
+                            value="{{#if editMode}}{{electivePosition.description}}{{/if}}" name="description"
+                            required />
                     </div>
 
-                   
-
+                    {{#if editMode}}
                     <div>
                         <label for="selectState" class="form-label">Estado:</label>
                         <br>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="selectState" id="radio-state-activo"
-                                value="Activo" {{#if editMode}} {{#if electivePosition.state}}checked{{/if}} {{else}}checked{{/if}} />
+                                value="Activo" {{#if editMode}} {{#if electivePosition.state}}checked{{/if}}
+                                {{else}}checked{{/if}} />
                             <label class="form-check-label" for="radio-state-activo">Activo</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="selectState" id="radio-state-inactivo"
-                                value="Inactivo"{{#if editMode}} {{#if electivePosition.state}}{{else}}checked{{/if}}{{/if}}/>
+                                value="Inactivo" {{#if editMode}} {{#if
+                                electivePosition.state}}{{else}}checked{{/if}}{{/if}} />
                             <label class="form-check-label" for="radio-state-inactivo">Inactivo</label>
                         </div>
 
-                    {{#if editMode}}
 
-                        <input type="hidden" value="{{electivePosition.id}}" name="electivePositionId"/>
+                        <input type="hidden" value="{{electivePosition.id}}" name="electivePositionId" />
 
-                    {{/if}}
+                        {{/if}}
 
                     </div>
                     <div class="mt-3 mb-3">
-                        <button type="submit" class="btn btn-success float-end"
-                            id="btn-send">{{#if editMode}}Guardar{{else}}Agregar{{/if}}</button>
+                        <button type="submit" class="btn btn-success float-end" id="btn-send">{{#if
+                            editMode}}Guardar{{else}}Agregar{{/if}}</button>
                     </div>
                 </form>
 

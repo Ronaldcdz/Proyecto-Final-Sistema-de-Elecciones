@@ -7,8 +7,8 @@ const expressHbs = require("express-handlebars");
 
 // Importando variables relacionadas a la base de datos
 const sequelize = require("./util/database");                   //Objeto sequilize ya configurado
-const ElectivePosition = require("./models/ElectivePosition");
-
+const ElectivePosition = require("./models/ElectivePosition");          // Importacion del modelo de Puestos Electivos
+const Parties = require("./models/Parties");
 
 // Importando Rutas
 const electorRoute = require("./routes/elector/elector");
