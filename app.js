@@ -10,6 +10,12 @@ const sequelize = require("./util/database");                   //Objeto sequili
 const ElectivePosition = require("./models/ElectivePosition");          // Importacion del modelo de Puestos Electivos
 const Parties = require("./models/Parties");
 
+
+// Importando variable multer para el manejo de subida de archivos
+const multer = require("multer");
+const {v4: uuidv4} = require("uuid");
+
+
 // Importando Rutas
 const electorRoute = require("./routes/elector/elector");
 const electivePositionRoute = require("./routes/admin/electivePosition");
@@ -20,7 +26,7 @@ app.engine("hbs", expressHbs({
     layoutsDir: "views/layout",
     defaultLayout: "main-layout",
     extname: "hbs"
-    }
+}
 ));
 
 
@@ -32,8 +38,27 @@ app.set("views", "views");
 app.use(express.urlencoded({ extended: false }));
 
 
+const fileStorage = multer.diskStorage(
+    {
+        destination: (req, file, callBack) => {
+
+            callBack(null, "images");
+        },
+        filename: (req, file, callBack) => {
+
+            callBack(null, `${uuidv4()}-${file.originalname}`);
+        }
+    }
+)
+
+
+app.use(multer({ storage: fileStorage }).single("image"));      // Configurando el multer para que en cualquier request maneje
+// la subida de imagenes
+
+
 // Configurando las carpetas públicas
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 
 
@@ -54,10 +79,10 @@ app.use("/", errorController.Get404);
 // Creando el servidor en el puerto 8080 si se sincroniza la base de datos
 
 sequelize.sync().then(result => {
-    
+
     app.listen(8080);
 
 }).catch(error => {
-    console.log("Acaba de ocurrir el siguiente error: "+ error);
+    console.log("Acaba de ocurrir el siguiente error: " + error);
 });
 
