@@ -17,6 +17,7 @@ const {v4: uuidv4} = require("uuid");
 
 
 // Importando Rutas
+const adminRoute = require("./routes/admin/admin");
 const electorRoute = require("./routes/elector/elector");
 const electivePositionRoute = require("./routes/admin/electivePosition");
 const partiesRoute = require("./routes/admin/parties");
@@ -38,7 +39,7 @@ app.set("views", "views");
 app.use(express.urlencoded({ extended: false }));
 
 
-const fileStorage = multer.diskStorage(
+const fileStorage = multer.diskStorage(             // Configuracion de donde se guardará las imagenes 
     {
         destination: (req, file, callBack) => {
 
@@ -51,9 +52,8 @@ const fileStorage = multer.diskStorage(
     }
 )
 
-
-app.use(multer({ storage: fileStorage }).single("image"));      // Configurando el multer para que en cualquier request maneje
-// la subida de imagenes
+                                        // Todos los campos donde se subirán las imagenes deben tener el atributo name llamado "image"
+app.use(multer({ storage: fileStorage }).single("image"));      // Configurando el multer para que en cualquier request maneje la subida de imagenes                        
 
 
 // Configurando las carpetas públicas
@@ -63,7 +63,12 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 
 // Usando las rutas para los middleware
+
+
 app.use(electorRoute);                      // Midlleware para el Elector
+
+app.use("/admin", adminRoute);
+
 
 app.use("/admin", electivePositionRoute);              // Middleware para el Admin
 

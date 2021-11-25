@@ -1,10 +1,5 @@
 const ElectivePosition = require("../../models/ElectivePosition");      // Importando el modelo para usar todos sus metodos
 
-//Método del controlador encargado de devolver el home del admin cumpliendo con ciertas restricciones
-exports.GetHome = (req, res, next) => {
-
-    res.status(200).render("admin/home-admin", { pageTitle: "Admin Home" });            // HAY QUE MOVER ESTE METODO DEL CONTROLADOR A OTRO CONTROLADOR
-};                                                                                      // PARA SEPARAR EL ADMIN DE LOS PUESTOS ELECTIVOS
 
 //Método del controlador encargado de devolver el home de los Puestos Electivos cumpliendo con ciertas restricciones
 exports.GetElectivePosition = (req, res, next) => {

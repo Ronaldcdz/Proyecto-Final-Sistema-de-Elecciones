@@ -5,7 +5,6 @@ const electivePositionController = require("../../controllers/admin/ElectivePosi
 
 // El proposito de las rutas es que cuando llegue una peticion lo redireccione al action de un controller
 
-router.get("/", electivePositionController.GetHome);
 
 router.get("/elective-position", electivePositionController.GetElectivePosition);
 
