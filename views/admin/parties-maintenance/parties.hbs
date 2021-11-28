@@ -8,46 +8,47 @@
         <a href="/admin/parties/add-parties" class="btn btn-primary col-md-2 offset-5 mb-5">Agregar
             un Partido Pol&iacute;tico</a>
 
+        <div class="row">
+            {{#if hasParties}}
 
-        {{#if hasParties}}
-
-        {{#each parties as |party|}}
-
-
-        <div class="col-md-4">
-            <div class="card {{#if party.state}} {{else}}card-disabled{{/if}}">
-                <div class="card-body">
-                    <h5 class="card-title fs-3 font-bold">{{party.name}}</h5>
-                    <p class="card-text font-medium">{{party.description}}</p>
-                    <p class="card-text font-medium">Estado: {{#if party.state}}Activo{{else}}Inactivo{{/if}}
-                    </p>
+            {{#each parties as |party|}}
 
 
-                    <div class="d-flex mx-0 float-end">
-                        <a href="/admin/elective-position/edit-elective-position/{{party.id}}?editMode=true" class="btn btn-primary ">Editar</a>
+            <div class="col-md-4">
+                <div class="card {{#if party.state}} {{else}}card-disabled{{/if}}">
+                    <img src="{{party.partylogo}}" class="card-img-top image-size" alt="{{party.name}}">
+                    <div class="card-body">
+                        <h5 class="card-title fs-3 font-bold">{{party.name}}</h5>
+                        <p class="card-text font-medium">{{party.description}}</p>
+                        <p class="card-text font-medium">Estado: {{#if party.state}}Activo{{else}}Inactivo{{/if}}
+                        </p>
 
-                        <form action="/admin/elective-position/delete-elective-position" method="post" class="mx-2">
 
-                            <input type="hidden" value="{{this.id}}" name="electivePositionId">
-                            <button type="submit"
-                                class="btn btn-danger float-middle">Borrar</button>
-                        </form>
+                        <div class="d-flex mx-0 float-end">
+                            <a href="/admin/parties/edit-parties/{{party.id}}?editMode=true"
+                                class="btn btn-primary ">Editar</a>
+
+                            <form action="/admin/parties/delete-parties" method="post" class="mx-2">
+
+                                <input type="hidden" value="{{this.id}}" name="partyId">
+                                <button type="submit" class="btn btn-danger float-middle">Borrar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+
+
+                {{/each}}
+
+
+                {{else}}
+
+                <h5 class="text-center mt-5 mb-5">No existen Partidos Pol&iacute;ticos Agregados</h3>
+
+
+                    {{/if}}
+
+
             </div>
-
-
-            {{/each}}
-
-
-            {{else}}
-
-            <h5 class="text-center mt-5 mb-5">No existen Partidos Pol&iacute;ticos Agregados</h3>
-
-
-                {{/if}}
-
-
         </div>
-
 </main>

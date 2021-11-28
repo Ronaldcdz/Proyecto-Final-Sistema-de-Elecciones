@@ -6,11 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/vendors/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/custom/admin/elective-position-maintenance/elective-position.css">
+    <link rel="stylesheet" href="/assets/css/custom/style.css">
+    <!--Font Body-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=PT+Sans&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <title>{{pageTitle}}</title>
 </head>
-
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="title navbar-brand" href="/">SAD<img id="imgTitle" class="pb-3" src="https://img.icons8.com/wired/50/000000/elections.png"/>VO</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" id="aHome" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" id="aFeatures" href="#">Election</a>
+                    <a class="nav-link" id="aAdmin" href="/admin">Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +55,7 @@
 
         </div>
     </nav>
-
+-->
     <div class="container-fluid">
 
 
@@ -43,6 +63,7 @@
 
     </div>
 
+    <script src="/assets/js/vendors/bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>
