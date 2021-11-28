@@ -1,7 +1,6 @@
 // Importando variables para configurar el express
 const express = require("express");
 const path = require("path");
-
 const app = express();
 const expressHbs = require("express-handlebars");
 
@@ -10,14 +9,25 @@ const sequelize = require("./util/database");                   //Objeto sequili
 const ElectivePosition = require("./models/ElectivePosition");          // Importacion del modelo de Puestos Electivos
 const Parties = require("./models/Parties");
 const candidate = require("./models/Candidate");
-
+const Users = require("./models/Users");
+const UserType = require("./models/UserType");
 
 // Importando variable multer para el manejo de subida de archivos
 const multer = require("multer");
-const {v4: uuidv4} = require("uuid");
+const { v4: uuidv4 } = require("uuid");
+
+
+// Importando variable para el manejo de sesiones
+const session = require("express-session");
+
+
+// Importando variable para pasar los mensajes de errores a todos las vistas
+const flash = require("connect-flash");
 
 
 // Importando Rutas
+const authRoute = require("./routes/auth");
+const adminRoute = require("./routes/admin/admin");
 const electorRoute = require("./routes/elector/elector");
 const electivePositionRoute = require("./routes/admin/electivePosition");
 const partiesRoute = require("./routes/admin/parties");
@@ -40,7 +50,7 @@ app.set("views", "views");
 app.use(express.urlencoded({ extended: false }));
 
 
-const fileStorage = multer.diskStorage(
+const fileStorage = multer.diskStorage(             // Configuracion de donde se guardará las imagenes 
     {
         destination: (req, file, callBack) => {
 
@@ -53,9 +63,8 @@ const fileStorage = multer.diskStorage(
     }
 )
 
-
-app.use(multer({ storage: fileStorage }).single("image"));      // Configurando el multer para que en cualquier request maneje
-// la subida de imagenes
+// Todos los campos donde se subirán las imagenes deben tener el atributo name llamado "image"
+app.use(multer({ storage: fileStorage }).single("image"));      // Configurando el multer para que en cualquier request maneje la subida de imagenes                        
 
 
 // Configurando las carpetas públicas
@@ -65,7 +74,30 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 
 // Usando las rutas para los middleware
-app.use(electorRoute);                      // Midlleware para el Elector
+
+app.use(session({ secret: "anything", resave: true, saveUninitialized: false }));
+
+app.use(flash());
+
+
+app.use((req, res, next) => {
+
+    const errors = req.flash("errors");
+
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.errorMessage = errors;
+    res.locals.hasErrorMessages = errors.length > 0;
+    res.locals.isAdmin = req.session.isAdmin;
+
+    next();
+});
+
+
+app.use(electorRoute);                                  // Midlleware para el Elector
+
+app.use("/admin", adminRoute);                          // Middleware para devolver el home del admin
+
+app.use(authRoute);                           // Middleware para devolver el login
 
 app.use("/admin", electivePositionRoute);              // Middleware para el Admin
 

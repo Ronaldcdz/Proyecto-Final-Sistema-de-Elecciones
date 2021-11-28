@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=PT+Sans&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/assets/css/custom/admin/elective-position-maintenance/elective-position.css">
     <title>{{pageTitle}}</title>
 </head>
 <body>
@@ -40,16 +41,37 @@
             <a class="navbar-brand" href="/">SADVO</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Prueba de Enlace</a>  
+                    <a class="nav-link active" href="#">Prueba de Enlace</a>
                 </li>
+                {{#if isAdmin}}
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Prueba de Enlace</a>
+                    <a class="nav-link active" href="/admin">Admin</a>
+                </li>
+
+                {{/if}}
+
+
+                {{#if isAuthenticated}}
+
+                <form action="/logout" method="POST">
+
+                    <li class="nav-item float-end">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </li>
+
+                </form>
+
+                {{else}}
+                <li class="nav-item float-end">
+                    <a class="nav-link active float-end" href="/login">Login</a>
                 </li>
 
                 <li class="nav-item float-end">
-                    <a class="nav-link active" href="/admin">Admin</a>
+                    <a class="nav-link active float-end" href="/signup">Registrate</a>
                 </li>
+
+                {{/if}}
             </ul>
             </ul>
 
@@ -58,6 +80,24 @@
 -->
     <div class="container-fluid">
 
+    <div class="container">
+
+        {{#if hasErrorMessages}}
+
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+
+            <ul>
+
+                {{#each errorMessage}}
+
+                <li>{{this}}</li>
+
+                {{/each}}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {{/if}}
 
         {{{body}}}
 
