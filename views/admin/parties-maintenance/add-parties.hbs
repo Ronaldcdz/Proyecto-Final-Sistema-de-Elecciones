@@ -28,7 +28,7 @@
                     <div class="mt-3 mb-3">
                         <label for="party-logo" class="form-label">Selecciona el Logo del Partido:</label>
                         <input type="file" id="party-logo" class="form-control" name="image"
-                            placeholder="Esto funciona??"/>
+                            {{#if editMode}}{{else}}required{{/if}}/>
                     </div>
 
 

@@ -85,6 +85,7 @@ app.use((req, res, next) => {
     const errors = req.flash("errors");
 
     res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.userLoggedIn = req.session.userLoggedIn;         //Para Tener en cualquier vista los valores de la persona que inicio sesion
     res.locals.errorMessage = errors;
     res.locals.hasErrorMessages = errors.length > 0;
     res.locals.isAdmin = req.session.isAdmin;
@@ -104,6 +105,7 @@ app.use("/admin", electivePositionRoute);              // Middleware para el Adm
 app.use("/admin", partiesRoute);                        // Midllewarre para los Partidos
 
 app.use("/admin", candidateRoute);                  //Midllewarre para los candidatos
+
 // Importando el controlador de error
 const errorController = require("./controllers/ErrorController");
 app.use("/", errorController.Get404);
@@ -113,6 +115,9 @@ app.use("/", errorController.Get404);
 //Parties.hasMany(candidate);
 candidate.belongsTo(ElectivePosition,{constraint:true, onDelete:"CASCADE"});
 //ElectivePosition.hasMany(candidate);
+
+
+
 // Creando el servidor en el puerto 8080 si se sincroniza la base de datos
 
 sequelize.sync().then(result => {
