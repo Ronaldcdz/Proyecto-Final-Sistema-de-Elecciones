@@ -30,10 +30,6 @@ const Parties = sequelize.define("Parties", {
         type: Sequelize.BOOLEAN,
         allowNull: false
     }
-
-
-
-
 });
 
 module.exports = Parties;

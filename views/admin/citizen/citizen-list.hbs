@@ -1,0 +1,55 @@
+<main>
+    <div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="mt-5">Citizen</h3>
+            </div>
+        </div>
+        <hr>
+{{!--         <div class="row">
+            <div class="col-md-12">
+                <a href="/admin/elective-position/add-elective-position" class="btn-add float-end"><i class='bx bxs-add-to-queue'></i></a>
+            </div> --}}
+            <div class="col-md-12">
+{{!--                 <div class="card">
+                    <div class="card-body"> --}}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Document id</th>
+                                    <th scope="col" class="text-center">State</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            {{#each users as |user|}}
+                                <tbody>
+                                    <tr>
+                                        <th class="pt-3">{{user.id}}</th>
+                                        <td class="pt-3">{{user.name}}</td>
+                                        <td class="pt-3">{{user.lastname}}</td>
+                                        <td class="pt-3">{{user.email}}</td>
+                                        <td class="pt-3">{{user.documentid}}</td>
+                                        <td class="text-center pt-3">
+                                            <form action="" method="post">
+                                                {{#if user.state}}
+                                                    <i class='text-success bx bxs-circle'></i>
+                                                {{else}}
+                                                    <i class='text-secondary bx bxs-circle'></i>
+                                                {{/if}}
+                                            </form>
+                                        </td>
+                                        <td class="text-end"><a href="/admin/save-citizen/{{user.id}}" class="me-3 btn-table btn btn-white"><i class='bx bx-edit-alt'></i></a> <form method="POST" action="/admin/delete-citizen/{{user.id}}"></td>
+                                    </tr>
+                                </tbody>
+                            {{/each}}
+                        </table>
+                    {{!-- </div>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+</main>

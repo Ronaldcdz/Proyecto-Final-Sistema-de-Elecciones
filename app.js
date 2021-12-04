@@ -32,6 +32,7 @@ const electorRoute = require("./routes/elector/elector");
 const electivePositionRoute = require("./routes/admin/electivePosition");
 const partiesRoute = require("./routes/admin/parties");
 const candidateRoute = require("./routes/admin/candidate");
+const citizenRoute = require("./routes/admin/users");
 
 // Configurando el engine (motor de renderización de vistas)
 app.engine("hbs", expressHbs({
@@ -106,18 +107,20 @@ app.use("/admin", partiesRoute);                        // Midllewarre para los 
 
 app.use("/admin", candidateRoute);                  //Midllewarre para los candidatos
 
+<<<<<<< HEAD
+=======
+app.use("/admin", citizenRoute);
+>>>>>>> 8dcc5488495f236f9b4525de3a5c24f1109cfbf0
 // Importando el controlador de error
 const errorController = require("./controllers/ErrorController");
 app.use("/", errorController.Get404);
 
 //Relacion entre entidades
-//candidate.belongsTo(Parties, {constraint:true, onDelete:"CASCADE"});
+//candidate.belongsTo(Parties,{constraint: true, onDelete:"CASCADE"});
 //Parties.hasMany(candidate);
 candidate.belongsTo(ElectivePosition,{constraint:true, onDelete:"CASCADE"});
-//ElectivePosition.hasMany(candidate);
 
-
-
+ElectivePosition.hasMany(candidate);
 // Creando el servidor en el puerto 8080 si se sincroniza la base de datos
 
 sequelize.sync().then(result => {

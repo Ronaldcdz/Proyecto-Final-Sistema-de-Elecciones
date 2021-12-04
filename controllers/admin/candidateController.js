@@ -5,11 +5,11 @@ const position = require("../../models/ElectivePosition");
 //GET Methods
 exports.GetCandidateList = (req, res , next) => {
     candidates.findAll({include:[{model: position}]}).then((result) => {
-        const candidates = result.map((result) => result.dataValues);
+        const Cand = result.map((result) => result.dataValues);
 
         res.status(200).render("admin/candidates/candidate-list", {
             pageTitle: "Candidates list",
-            candidate: candidates
+            candidate: Cand
         });
     }).catch((err) => {
         console.log(err)

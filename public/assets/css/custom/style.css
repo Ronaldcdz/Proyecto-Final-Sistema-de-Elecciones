@@ -20,24 +20,24 @@ body{
 /*navbar*/
 .navbar{
     background-color: #EA5455;
-    box-shadow: 2px 2px 2px 2px gray;
 }
 
 .navbar-nav{
     margin-left: 800px;
     font-size: 18px;
-    color: white;
 }
 
 #aHome{
     transition: 0.25s;
     margin-left: 40px;
     font-weight: 500;
+    color: gainsboro;
 }
 
 #aHome:hover{
-    color: #EEEEEE;
+    color: white;
     border-bottom: solid 1px;
+    border-radius: 20%;
 }
 
 #aFeatures{
@@ -45,21 +45,25 @@ body{
     margin-left: 30px;
     margin-right: 30px;
     font-weight: 500;
+    color: gainsboro;
 }
 
 #aFeatures:hover{
-    color: #EEEEEE;
+    color: white;
     border-bottom: solid 1px;
+    border-radius: 20%;
 }
 
 #aAdmin{
     transition: 0.25s;
     font-weight: 500;
+    color: gainsboro;
 }
 
 #aAdmin:hover{
-    color: #EEEEEE;
+    color: white;
     border-bottom: solid 1px;
+    border-radius: 20%;
 }
 /*MAIN LAYOUT*/
 
@@ -140,9 +144,90 @@ img{
     .btn-add:hover{
         color: green
     }
-
-    #btn-content{
-        width: 150px;
-        overflow: hidden;
-    }
 /*ELECTIVE-POSITION*/
+
+/*CITIZEN*/
+
+    .btn-table{
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.5;
+    }
+
+    .btn-table:hover{
+        background-color: gray;
+        color: white;
+    }
+
+    #btn-next{
+        transition: 0.25s;
+        background-color: gainsboro;
+        color: gray;
+        border: none;
+        box-shadow: 1px 1px 1px 1px gray;
+    }
+
+    #btn-next:hover{
+        box-shadow: none;
+        background-color: gray;
+        color: white;
+    }
+
+    #btn-cancel{
+        transition: 0.25s;
+        background-color: gainsboro;
+        color: gray;
+        border: none;
+        box-shadow: 1px 1px 1px 1px gray;
+    }
+
+    #btn-cancel:hover{
+        box-shadow: none;
+        background-color: gray;
+        color: white;
+    }
+
+    #btn-disable{
+        transition: 0.25s;
+        background-color: #EA5455;
+        color: white;
+        border: none;
+        box-shadow: 1px 1px 1px 1px gray;
+    }
+
+    #btn-disable:hover{
+        box-shadow: none;
+    }
+
+    #btn-enable{
+        transition: 0.25s;
+        background-color: #1FAB89;
+        color: white;
+        border: none;
+        box-shadow: 1px 1px 1px 1px gray;
+    }
+
+    #btn-enable:hover{
+        box-shadow: none;
+    }
+
+    .form-control{
+        border: none;
+        border-bottom: solid 1px;
+    }
+
+    .card{
+        margin-top: 65px;
+        transition: 1s;
+    }
+
+    .card:hover{
+        margin-top: 55px;
+    }
+
+    .form-state{
+        margin-top: 100px;
+        border: none;
+    }
+/*CITIZEN*/
