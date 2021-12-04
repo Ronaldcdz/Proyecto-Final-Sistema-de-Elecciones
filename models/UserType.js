@@ -15,10 +15,6 @@ const UserType = sequelize.define("UserType", {
         type: Sequelize.STRING,
         allowNull: false
     }
-
-
-
-
 });
 
 // Hay que agregar una manera de que se queden como datos permanentes lo que esta mas abajo

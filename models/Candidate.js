@@ -21,17 +21,6 @@ const candidate = sequelize.define("candidate", {
         type: Sequelize.STRING,
         allowNull: false
     },
-
-    idParties: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-
-    idPosition: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    }
-
 });
 
 module.exports = candidate;

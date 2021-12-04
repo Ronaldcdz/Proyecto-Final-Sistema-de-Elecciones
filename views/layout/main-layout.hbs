@@ -16,17 +16,22 @@
     <title>{{pageTitle}}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="shadow navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="title navbar-brand" href="/">SAD<img id="imgTitle" class="pb-3" src="https://img.icons8.com/wired/50/000000/elections.png"/>VO</a>
+            <a class="title navbar-brand text-white" href="/">SAD<img id="imgTitle" class="pb-3" src="https://img.icons8.com/wired/50/000000/elections.png"/>VO</a>
             <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
+                    {{#if isAdmin}}
+                    {{else}}
                     <a class="nav-link" id="aHome" aria-current="page" href="/">Home</a>
+                    {{/if}}
                     <a class="nav-link" id="aFeatures" href="#">Election</a>
-                    <a class="nav-link" id="aAdmin" href="/admin">Admin</a>
+                    {{#if isAdmin}}
+                        <a class="nav-link" id="aAdmin" href="/admin">Admin</a>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -51,6 +56,7 @@
 
                 {{/if}}
 
+                CERRAR SESION CONDICION 
 
                 {{#if isAuthenticated}}
 
@@ -79,15 +85,10 @@
     </nav>
 -->
     <div class="container-fluid">
-
     <div class="container">
-
         {{#if hasErrorMessages}}
-
         <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-
             <ul>
-
                 {{#each errorMessage}}
 
                 <li>{{this}}</li>
@@ -96,14 +97,9 @@
             </ul>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-
         {{/if}}
-
         {{{body}}}
-
     </div>
-
     <script src="/assets/js/vendors/bootstrap/bootstrap.min.js"></script>
 </body>
-
 </html>

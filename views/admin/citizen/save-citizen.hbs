@@ -1,0 +1,63 @@
+<main>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="mt-5">Edit citizen</h3>
+        </div>
+    </div>
+    <hr>
+                    <div class="row mt-5">
+                        <div class="col-md-6 offset-3">
+                            <div class="shadow card">
+                                <div class="card-body">
+                                    <div class="float-end">
+                                        {{#if userEdit.state}}
+                                            <i class='text-success bx bxs-circle'></i>
+                                        {{else}}
+                                            <i class='text-secondary bx bxs-circle'></i>
+                                        {{/if}}
+                                    </div>
+                                    <form action="/admin/save-citizen" method="POST">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputName" name="name" placeholder="Name" value="{{userEdit.name}}" {{#if userEdit.state}} {{else}} disabled {{/if}}>
+                                                    <label for="inputName"><i class='bx bx-user'></i> Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputLastName" name="lastName"  placeholder="LastName" value="{{userEdit.lastname}}" {{#if userEdit.state}} {{else}} disabled {{/if}}>
+                                                    <label for="inputLastName"><i class='bx bx-user'></i> Last Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputEmail" name="email"  placeholder="Email" value="{{userEdit.email}}" {{#if userEdit.state}} {{else}} disabled {{/if}}>
+                                                    <label for="inputEmail">Email</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputDocumentId" name="documentId"  placeholder="Document id" value="{{userEdit.documentid}}" {{#if userEdit.state}} {{else}} disabled {{/if}}>
+                                                    <label for="inputDocumentId">Document id</label>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="id" value="{{userEdit.id}}">
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success float-end m-1 mt-5" id="btn-next" {{#if userEdit.state}} {{else}} disabled {{/if}}>Save</button>
+                                    </form>
+                                        <div>
+                                            <a href="/admin/citizen-list" class="btn btn-outline-success float-end m-1 mt-5" id="btn-cancel">Cancel</a>
+                                        </div>
+                                    <form action="/admin/state-citizen" method="post">
+                                        <input type="hidden" name="id" value="{{userEdit.id}}">
+                                        <input type="hidden" name="state" value="{{#if userEdit.state}} 0 {{else}} 1 {{/if}}">
+                                        <div>
+                                            <button type="submit" class="btn btn-outline-success float-start m-1 mt-5" {{#if userEdit.state}}id="btn-disable"{{else}}id="btn-enable"{{/if}}>{{#if userEdit.state}}Disable{{else}}Enable{{/if}}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+</main>
