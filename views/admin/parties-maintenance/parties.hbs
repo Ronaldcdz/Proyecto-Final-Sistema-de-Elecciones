@@ -29,6 +29,7 @@
                                 class="btn btn-primary ">Editar</a>
 
                             <form action="/admin/parties/delete-parties" method="post" class="mx-2">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}" />
 
                                 <input type="hidden" value="{{this.id}}" name="partyId">
                                 <button type="submit" class="btn btn-danger float-middle">Borrar</button>

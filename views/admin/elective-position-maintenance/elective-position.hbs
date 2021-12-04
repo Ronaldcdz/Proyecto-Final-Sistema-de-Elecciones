@@ -9,7 +9,8 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-                <a href="/admin/elective-position/add-elective-position" class="btn-add float-end"><i class='bx bxs-add-to-queue'></i></a>
+                <a href="/admin/elective-position/add-elective-position" class="btn-add float-end"><i
+                        class='bx bxs-add-to-queue'></i></a>
             </div>
         </div>
 
@@ -30,13 +31,14 @@
 
 
                     <div class="d-flex mx-0 float-end">
-                        <a href="/admin/elective-position/edit-elective-position/{{electivePosition.id}}?editMode=true" class="btn btn-primary ">Editar</a>
+                        <a href="/admin/elective-position/edit-elective-position/{{electivePosition.id}}?editMode=true"
+                            class="btn btn-primary ">Editar</a>
 
                         <form action="/admin/elective-position/delete-elective-position" method="post" class="mx-2">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
 
                             <input type="hidden" value="{{this.id}}" name="electivePositionId">
-                            <button type="submit"
-                                class="btn btn-danger float-middle">Borrar</button>
+                            <button type="submit" class="btn btn-danger float-middle">Borrar</button>
                         </form>
                     </div>
                 </div>

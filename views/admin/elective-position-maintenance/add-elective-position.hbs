@@ -15,6 +15,7 @@
                 <form
                     action="{{#if editMode}}/admin/elective-position/edit-elective-position{{else}}/admin/elective-position/add-elective-position{{/if}}"
                     method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}" />
 
                     <div class="mt-3 mb-3">
                         <label for="name" class="form-label">Nombre del Puesto Electivo:</label>

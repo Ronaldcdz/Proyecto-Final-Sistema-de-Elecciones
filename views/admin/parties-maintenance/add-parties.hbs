@@ -5,34 +5,41 @@
 
 
         <div class="card">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
             <div class="card-header text-light bg-dark">
-                <h4 class="text-center" name="datosPersonales">{{#if editMode}}Editar Partido Pol&iacute;tico{{else}}Agregar Partido Pol&iacute;tico{{/if}}</h4>
+                <h4 class="text-center" name="datosPersonales">{{#if editMode}}Editar Partido
+                    Pol&iacute;tico{{else}}Agregar Partido Pol&iacute;tico{{/if}}</h4>
             </div>
 
             <div class="card-body">
 
-                <form enctype="multipart/form-data" action="{{#if editMode}}/admin/parties/edit-parties{{else}}/admin/parties/add-parties{{/if}}" method="POST">
+                <form enctype="multipart/form-data"
+                    action="{{#if editMode}}/admin/parties/edit-parties{{else}}/admin/parties/add-parties{{/if}}"
+                    method="POST">
 
-                    <div class="mt-3 mb-3"> 
+                    <div class="mt-3 mb-3">
                         <label for="name" class="form-label">Nombre del Partido Pol&iacute;tico:</label>
-                        <input type="text" id="name"  class="form-control" maxlength="200"
-                            placeholder="Escriba el nombre del partido electivo" value="{{#if editMode}}{{party.name}}{{/if}}" name="name" required/ >
+                        <input type="text" id="name" class="form-control" maxlength="200"
+                            placeholder="Escriba el nombre del partido electivo"
+                            value="{{#if editMode}}{{party.name}}{{/if}}" name="name" required/>
                     </div>
 
                     <div class="mt-3 mb-3">
                         <label for="description" class="form-label">Descripci&oacute;n:</label>
                         <input type="text" id="description" class="form-control" maxlength="200"
-                            placeholder="Escriba el obetivo de este Partido Politico" value="{{#if editMode}}{{party.description}}{{/if}}" name="description" required/>
+                            placeholder="Escriba el obetivo de este Partido Politico"
+                            value="{{#if editMode}}{{party.description}}{{/if}}" name="description" required />
                     </div>
 
                     <div class="mt-3 mb-3">
                         <label for="party-logo" class="form-label">Selecciona el Logo del Partido:</label>
-                        <input type="file" id="party-logo" class="form-control" name="image"
-                            {{#if editMode}}{{else}}required{{/if}}/>
+                        <input type="file" id="party-logo" class="form-control" name="image" {{#if
+                            editMode}}{{else}}required{{/if}} />
                     </div>
 
 
-                     {{#if editMode}}
+                    {{#if editMode}}
                     <div>
                         <label for="selectState" class="form-label">Estado:</label>
                         <br>
@@ -45,8 +52,7 @@
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="selectState" id="radio-state-inactivo"
-                                value="Inactivo" {{#if editMode}} {{#if
-                                party.state}}{{else}}checked{{/if}}{{/if}} />
+                                value="Inactivo" {{#if editMode}} {{#if party.state}}{{else}}checked{{/if}}{{/if}} />
                             <label class="form-check-label" for="radio-state-inactivo">Inactivo</label>
                         </div>
 
@@ -57,8 +63,8 @@
 
                     </div>
                     <div class="mt-3 mb-3">
-                        <button type="submit" class="btn btn-success float-end"
-                            id="btn-send">{{#if editMode}}Guardar{{else}}Agregar{{/if}}</button>
+                        <button type="submit" class="btn btn-success float-end" id="btn-send">{{#if
+                            editMode}}Guardar{{else}}Agregar{{/if}}</button>
                     </div>
                 </form>
 

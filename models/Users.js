@@ -47,7 +47,17 @@ const Users = sequelize.define("Users", {
     state: {
         type: Sequelize.BOOLEAN,
         allowNull: false
-    }
+    },
+
+    resetToken : {
+        type: Sequelize.STRING,
+        allowNull : true
+    }, 
+
+    resetTokenExpiration : {
+        type: Sequelize.DATE,
+        allowNull : true
+    }, 
 });
 
 module.exports = Users;

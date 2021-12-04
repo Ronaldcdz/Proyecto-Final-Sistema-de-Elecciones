@@ -12,5 +12,11 @@ router.post("/logout", authController.PostLogOut);
 router.get("/signup", authController.GetSignup);
 router.post("/signup", authController.PostSignup);
 
+router.get("/reset", authController.GetReset);
+router.post("/reset", authController.PostReset);
+
+router.get("/reset/:token", authController.GetNewPassword);
+router.post("/reset/new-password", authController.PostNewPassword);
+
 
 module.exports = router;
