@@ -1,4 +1,64 @@
-<div class="row">
+<main>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {{#if editMode}}
+                <h3 class="mt-5">Edit elective position</h3>
+            {{else}}
+                <h3 class="mt-5">Add elective position</h3>
+            {{/if}}
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-5">
+                        <div class="col-md-6 offset-3">
+                            <div class="shadow card">
+                                <div class="card-body">
+                                    {{#if editMode}}
+                                        <div class="float-end">
+                                            {{#if electivePosition.state}}
+                                                <i class='text-success bx bxs-circle'></i>
+                                            {{else}}
+                                                <i class='text-secondary bx bxs-circle'></i>
+                                            {{/if}}
+                                        </div>
+                                    {{/if}}
+                                    <form action="{{#if editMode}}/admin/elective-position/edit-elective-position{{else}}/admin/elective-position/add-elective-position{{/if}}">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputElectivePosition" name="electivePosition" placeholder="Name" value="{{#if editMode}}{{electivePosition.name}}{{/if}}" {{#if editMode}}{{#if electivePosition.state}} {{else}} disabled {{/if}}{{/if}}>
+                                                    <label for="inputElectivePosition">Elective position</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputDescription" name="description"  placeholder="description" value="{{#if editMode}}{{electivePosition.description}}{{/if}}" {{#if editMode}}{{#if electivePosition.state}} {{else}} disabled {{/if}}{{/if}}>
+                                                    <label for="inputDescription">Description</label>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="id" value="{{electivePosition.id}}">
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success float-end m-1 mt-5" id="btn-next" {{#if editMode}}{{#if electivePosition.state}} {{else}} disabled {{/if}}{{/if}}>Save</button>
+                                    </form>
+                                        <div>
+                                            <a href="/admin/elective-position" class="btn btn-outline-success float-end m-1 mt-5" id="btn-cancel">Cancel</a>
+                                        </div>
+                                    {{#if editMode}}
+                                        <form action="/admin/elective-position/delete-elective-position" method="post">
+                                            <input type="hidden" name="id" value="{{electivePosition.id}}">
+                                            <input type="hidden" name="state" value="{{#if electivePosition.state}} 0 {{else}} 1 {{/if}}">
+                                            <div>
+                                                <button type="submit" class="btn btn-outline-success float-start m-1 mt-5" {{#if electivePosition.state}}id="btn-disable"{{else}}id="btn-enable"{{/if}}>{{#if electivePosition.state}}Disable{{else}}Enable{{/if}}</button>
+                                            </div>
+                                        </form>
+                                    {{/if}}
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+</main>
+
+{{!-- <div class="row">
 
     <div class="col-md-6 offset-3 mt-5" id="main-container">
 
@@ -71,4 +131,4 @@
 
 
 
-    </div>
+    </div> --}}

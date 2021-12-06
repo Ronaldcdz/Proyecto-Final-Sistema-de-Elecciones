@@ -1,16 +1,42 @@
 <main>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-center">
                 <h3 class="mt-5">Elective positions</h3>
             </div>
         </div>
-        <hr>
         <div class="row">
             <div class="col-md-12">
                 <a href="/admin/elective-position/add-elective-position" class="btn-add float-end"><i class='bx bxs-add-to-queue'></i></a>
             </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            {{#if hasElectivePositions}}
+                {{#each electivePositions as |electivePosition|}}
+                    <div class="col-md-4">
+                        <div class="card shadow">
+                            {{#if electivePosition.state}}<i class='m-4 float-start text-success bx bxs-circle'> Active</i>{{else}}<i class='m-4 float-start text-secondary bx bxs-circle'> Inactive</i>{{/if}}
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">{{electivePosition.name}}</li>
+                                    <li class="list-group-item">{{electivePosition.description}}</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex mx-0 float-end">
+                                    <form action="/admin/parties/delete-parties" method="post" class="mx-2">
+                                        <input type="hidden" value="{{this.id}}" name="partyId">
+                                        <button type="submit" class="btn-delete-party btn float-middle"></button>
+                                    </form>
+                                    <a href="/admin/elective-position/edit-elective-position/{{electivePosition.id}}?editMode=true" class="btn-edit-party btn btn-primary"><i class='bx bx-edit-alt'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
         </div>
 <!--
         <h3 class="mt-5 mb-3 text-center">Listado de Puestos Electivos</h3>

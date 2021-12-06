@@ -123,22 +123,13 @@ exports.PostEditElectivePosition = (req, res, next) => {
 
 
 //Método del controlador encargado de borrar un Puesto Electivo seleccionado cumpliendo con ciertas restricciones
-exports.PostDeleteElectivePosition = (req, res, next) => {
+exports.PostDeleteElectivePosition = (req, res, next) =>{
+    const idElectivePosition = req.body.id;
+    const stateElectivePosition = req.body.state;
 
-    const electivePositionId = req.body.electivePositionId;
-
-    ElectivePosition.update(
-
-        { state: false },
-        { where: { id: electivePositionId } }).then(() => {
-
-            res.status(302).redirect("/admin/elective-position");
-
-        }).catch((error) => {
-
-            console.log("Acaba de ocurrir el siguiente error: " + error);
-
-        })
-
-
-};
+    ElectivePosition.update({state: stateElectivePosition}, {where: {id: idElectivePosition}}).then(() =>{
+        res.redirect("/admin/elective-position");
+    }).catch((err) =>{
+        console.log(err);
+    });
+}
