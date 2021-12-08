@@ -5,19 +5,12 @@ const position = require("../../models/ElectivePosition");
 
 //GET Methods
 exports.GetCandidateList = (req, res , next) => {
-    candidates.findAll({include:[{model: position}]}).then((result) => {
-        const ElectivePositionCandidate = result.map((result) => result.dataValues);
+    candidates.findAll({include:[parties, position]}).then((result) => {
+        const Candidate = result.map((result) => result.dataValues);
         
-        candidates.findAll({include:[{model: parties}]}).then((result) => {
-            const PartiesCandidate = result.map((result) => result.dataValues);
-
-            res.status(200).render("admin/candidates/candidate-list", {
-                pageTitle: "Candidates list",
-                candidateEp: ElectivePositionCandidate,
-                candidateP: PartiesCandidate
-            });
-        }).catch((err) => {
-            console.log(err)
+        res.status(200).render("admin/candidates/candidate-list", {
+            pageTitle: "Candidates list",
+            candidate: Candidate,
         });
 
     }).catch((err) => {
@@ -49,7 +42,46 @@ exports.GetAddCandidate = (req, res, next) => {
 }
 
 exports.GetEditCandidate = (req, res, next) => {
+    const idCandidate = req.params.candidateId
+    const editMode = req.query.editMode
 
+    if(!editMode){
+        res.status(200).redirect("/admin/candidate-list")
+    }
+
+    candidates.findOne({where: {id: idCandidate}}).then((result) => {
+        const candidates = result.dataValues;
+
+        if(!candidates){
+            res.status(200).redirect("/admin/candidate-list");
+        }
+
+        parties.findAll().then((result) => {
+            const partiesData = result.map((result) => result.dataValues);
+    
+            position.findAll().then((result) => {
+    
+                const positionData = result.map((result) => result.dataValues);
+    
+                res.status(200).render("admin/candidates/add-candidate",{
+                    pageTitle: "Edit Candidates",
+                    editMode: editMode,
+                    candidate: candidates,
+                    parties: partiesData,
+                    position: positionData
+                })
+    
+            }).catch((err) => {
+                console.log(err);
+            })
+    
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }).catch((err) => {
+        console.log(err);
+    })
 }
 
 //POST Methods
@@ -64,11 +96,11 @@ exports.PostCreateCandidate = (req, res, next) => {
     candidates.create({
         name: candidateName,
         lastName: candidateLastName,
-        PartiesId: candidateIdParties,
+        PartyId: candidateIdParties,
         ElectivePositionId: candidateIdPosition,
         state: true,
         imgProfile: "\\" + imgProfilePicture.path,
-    }).then((result) => {
+    }).then(() => {
         res.redirect("/admin/candidate-list");
     }).catch((err) => {
         console.log(err);
@@ -77,4 +109,17 @@ exports.PostCreateCandidate = (req, res, next) => {
 
 exports.PostEditCandidate = (req, res, next) => {
 
+    const id = req.body.id;
+    const name = req.body.name;
+    const lastName = req.body.lastName;
+    const parties = req.body.Parties;
+    const electivePosition = req.body.Position;
+    const imgProfile = req.file;
+
+    candidates.update({name: name, lastName: lastName, PartyId: parties, ElectivePositionId: electivePosition, imgProfile: "\\" + imgProfile.path},
+        {where: {id: id}}).then((result) => {
+            res.status(302).redirect("/admin/candidate-list");
+        }).catch((err) => {
+            console.log(err);
+        });
 }

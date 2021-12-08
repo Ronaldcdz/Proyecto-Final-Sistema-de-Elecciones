@@ -10,5 +10,6 @@ router.get("/add-candidate", candidateController.GetAddCandidate);
 router.get("/edit-candidate/:candidateId", candidateController.GetEditCandidate);
 //POST Routers
 router.post("/add-candidate", candidateController.PostCreateCandidate);
+router.post("/edit-candidate", candidateController.PostEditCandidate);
 
 module.exports = router;

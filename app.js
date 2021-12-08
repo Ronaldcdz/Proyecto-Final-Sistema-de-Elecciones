@@ -127,7 +127,7 @@ app.use("/", errorController.Get404);
 //Relacion entre entidades
 candidate.belongsTo(Parties,{constraint: true, onDelete:"CASCADE"});
 Parties.hasMany(candidate);
-candidate.belongsTo(ElectivePosition,{constraint:true, onDelete:"CASCADE"});
+candidate.belongsTo(ElectivePosition,{constraint: true, onDelete:"CASCADE"});
 ElectivePosition.hasMany(candidate);
 // Creando el servidor en el puerto 8080 si se sincroniza la base de datos
 

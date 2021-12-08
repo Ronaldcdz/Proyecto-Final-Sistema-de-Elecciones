@@ -18,7 +18,6 @@ exports.GetElectivePosition = (req, res, next) => {
 
     }).catch((error) => {
         console.log("Acaba de ocurrir el siguiente error: " + error);
-
     })
 
 };
@@ -40,6 +39,7 @@ exports.PostCreateElectivePosition = (req, res, next) => {
     const electivePositionName = req.body.electivePosition;
     const electivePositionDescription = req.body.description;
     const electivePositionState = true;
+
     ElectivePosition.create(
         {
             name: electivePositionName,
@@ -65,9 +65,7 @@ exports.GetEditElectivePosition = (req, res, next) => {
     const electivePositionId = req.params.electivePositionId;
 
     if (!editMode) {
-
         res.status(302).redirect("/admin/elective-position");
-
     }
 
     ElectivePosition.findOne({ where: { id: electivePositionId } }).then((result) => {
@@ -76,7 +74,6 @@ exports.GetEditElectivePosition = (req, res, next) => {
 
         if (!electivePosition) {
             res.status(302).redirect("/admin/elective-position");
-
         }
 
         res.status(200).render("admin/elective-position-maintenance/add-elective-position",
@@ -84,15 +81,11 @@ exports.GetEditElectivePosition = (req, res, next) => {
                 pageTitle: "Editar Puesto Electivo",
                 editMode: editMode,
                 electivePosition: electivePosition
-
             })
 
-
     }).catch((error) => {
-
         console.log("Acaba de ocurrir el siguiente error: " + error);
     });
-
 
 };
 
@@ -104,7 +97,6 @@ exports.PostEditElectivePosition = (req, res, next) => {
     const electivePositionDescription = req.body.description;
     const electivePositionId = req.body.electivePositionId;
     const electivePositionState = (req.body.selectState == "Activo") ? true : false;       // Usando un Operador condicional (ternario)
-
     
     ElectivePosition.update(
 
@@ -118,7 +110,6 @@ exports.PostEditElectivePosition = (req, res, next) => {
             console.log("Acaba de ocurrir el siguiente error: " + error);
 
         })
-
 };
 
 
