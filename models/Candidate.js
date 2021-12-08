@@ -21,6 +21,16 @@ const candidate = sequelize.define("candidate", {
         type: Sequelize.STRING,
         allowNull: false
     },
+
+    imgProfile: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    state: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
 module.exports = candidate;

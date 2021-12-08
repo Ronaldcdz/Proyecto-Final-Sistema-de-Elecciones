@@ -24,10 +24,6 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex mx-0 float-end">
-                            <form action="/admin/parties/delete-parties" method="post" class="mx-2">
-                                <input type="hidden" value="{{this.id}}" name="partyId">
-                                <button type="submit" class="btn-delete-party btn float-middle"></button>
-                            </form>
                             <a href="/admin/parties/edit-parties/{{party.id}}?editMode=true" class="btn-edit-party btn btn-primary"><i class='bx bx-edit-alt'></i></a>
                         </div>
                     </div>
@@ -68,6 +64,7 @@
                                 class="btn btn-primary ">Editar</a>
 
                             <form action="/admin/parties/delete-parties" method="post" class="mx-2">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}" />
 
                                 <input type="hidden" value="{{this.id}}" name="partyId">
                                 <button type="submit" class="btn btn-danger float-middle">Borrar</button>

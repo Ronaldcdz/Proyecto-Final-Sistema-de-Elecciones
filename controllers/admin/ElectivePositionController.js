@@ -37,7 +37,7 @@ exports.GetCreateElectivePosition = (req, res, next) => {
 //Método del controlador encargado de devolver los datos del formulario de los Puestos Electivos cumpliendo con ciertas restricciones
 exports.PostCreateElectivePosition = (req, res, next) => {
 
-    const electivePositionName = req.body.name;
+    const electivePositionName = req.body.electivePosition;
     const electivePositionDescription = req.body.description;
     const electivePositionState = true;
     ElectivePosition.create(

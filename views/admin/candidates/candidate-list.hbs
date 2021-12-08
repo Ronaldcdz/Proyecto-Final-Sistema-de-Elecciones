@@ -1,29 +1,46 @@
 <main>
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="m-3">Candidates</h2>
-            <hr>
+   <div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="mt-5">Candidates</h3>
+                <a href="/admin/add-candidate" class="btn-add float-end"><i class='bx bxs-add-to-queue'></i></a>
+            </div>
         </div>
-        <div class="col-md-6">
-            <a href="/admin/add-candidate" class="btn btn-primary m-3 float-end">ADD +</a>
-        </div>
+        <hr>
     </div>
     <div class="row">
-        {{#each candidate as |cand|}}
+        {{#each candidateEp as |cand|}}
             <div class="col-md-4">
-                <div class="card mt-3">
-                    <div class="card-header text-center">
-                        <h3>{{cand.name}} {{cand.lastName}}</h3>
-                    </div>
-                    <div class="card-title m-3">
-                        <h5 class="text-dark">{{cand.ElectivePosition.dataValues.name}}</h5>
+                <div class="card shadow">
+                    {{#if party.state}}<i class='m-4 float-start text-success bx bxs-circle'> Active</i>{{else}}<i class='m-4 float-start text-secondary bx bxs-circle'> Inactive</i>{{/if}}
+                    <div class="text-center">
+                        <img id="img-parties" src="{{cand.imgProfile}}" class="card-img-top" alt="{{cand.name}}">
                     </div>
                     <div class="card-body">
-                        <h5 class="text-dark">{{cand.Parties.dataValues.name}}</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">{{cand.name}}</li>
+                            <li class="list-group-item">{{cand.lastName}}</li>
+                            <li class="list-group-item">{{cand.ElectivePosition.dataValues.name}}</li>
+                            {{#each candidateP as |candP|}}
+                                <li class="list-group-item">{{candP.Parties.dataValues.name}}</li>
+                            {{/each}}
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex mx-0 float-end">
+                            <a href="/admin/parties/edit-candidates/{{cand.id}}?editMode=true" class="btn-edit-party btn btn-primary"><i class='bx bx-edit-alt'></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="candidateId" value="{{cand.id}}">
         {{/each}}
     </div>
 </main>

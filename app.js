@@ -4,6 +4,7 @@ const path = require("path");
 const app = express();
 const expressHbs = require("express-handlebars");
 
+
 // Importando variables relacionadas a la base de datos
 const sequelize = require("./util/database");                   //Objeto sequilize ya configurado
 const ElectivePosition = require("./models/ElectivePosition");          // Importacion del modelo de Puestos Electivos
@@ -23,6 +24,12 @@ const session = require("express-session");
 
 // Importando variable para pasar los mensajes de errores a todos las vistas
 const flash = require("connect-flash");
+
+
+// Importando variable para la seguridad de las paginas y los formularios
+const csurf = require("csurf");
+const csrfProtection = csurf();
+
 
 
 // Importando Rutas
@@ -80,15 +87,19 @@ app.use(session({ secret: "anything", resave: true, saveUninitialized: false }))
 
 app.use(flash());
 
+app.use(csrfProtection);
+
 
 app.use((req, res, next) => {
 
     const errors = req.flash("errors");
 
     res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.userLoggedIn = req.session.userLoggedIn;         //Para Tener en cualquier vista los valores de la persona que inicio sesion
     res.locals.errorMessage = errors;
     res.locals.hasErrorMessages = errors.length > 0;
     res.locals.isAdmin = req.session.isAdmin;
+    res.locals.csrfToken = req.csrfToken();
 
     next();
 });
@@ -106,7 +117,9 @@ app.use("/admin", partiesRoute);                        // Midllewarre para los 
 
 app.use("/admin", candidateRoute);                  //Midllewarre para los candidatos
 
+
 app.use("/admin", citizenRoute);
+
 // Importando el controlador de error
 const errorController = require("./controllers/ErrorController");
 app.use("/", errorController.Get404);

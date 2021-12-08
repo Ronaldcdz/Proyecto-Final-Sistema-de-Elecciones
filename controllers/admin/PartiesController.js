@@ -59,9 +59,6 @@ exports.PostCreateParties = (req, res, next) => {
 
 }
 
-
-
-
 exports.GetEditParties = (req, res, next) => {
 
     const editMode = req.query.editMode;
