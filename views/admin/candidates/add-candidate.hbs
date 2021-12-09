@@ -18,13 +18,13 @@
                         {{/if}}
                         {{/if}}
                     </div>
-                    <form enctype="multipart/form-data" {{#if editMode}}action="/admin/edit-candidate"{{else}}action="/admin/add-candidate"{{/if}} method="POST">
+                    <form enctype="multipart/form-data" {{#if editMode}} action="/admin/edit-candidate" {{else}} action="/admin/add-candidate" {{/if}} method="POST">
                         <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-floating">
                                     <input required type="text" class="form-control m-1" id="inputName" name="name"
-                                        placeholder="Name" {{#if editMode}}value="{{candidate.name}}" {{#if candidate.state}} {{else}}
+                                        placeholder="Name" {{#if editMode}} value="{{candidate.name}}" {{#if candidate.state}} {{else}}
                                         disabled {{/if}}{{/if}}>
                                     <label for="inputName"><i class='bx bx-user'></i> Name</label>
                                 </div>
@@ -47,25 +47,25 @@
                                         <option value="{{part.id}}">{{part.name}}</option>
                                         {{/each}}
                                     </select>
-                                    <label for="inputParties"><i class='bx bxs-graduation'></i>Parties</label>
+                                    <label for="inputParties">Parties</label>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-floating">
                                     <select class="form-select m-1" id="inputPosition" name="Position"
                                         aria-label="Position" {{#if editMode}}{{#if
-                                        candidate.state}} {{else}} disabled {{/if}}{{/if}}>
+                                        candidate.state}} {{else}} disabled {{/if}}{{/if}} >
                                         <option selected>Choice a career</option>
                                         {{#each position as |pos|}}
                                         <option value="{{pos.id}}">{{pos.name}}</option>
                                         {{/each}}
                                     </select>
-                                    <label for="inputPosition"><i class='bx bxs-graduation'></i>Positions</label>
+                                    <label for="inputPosition">Positions</label>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-floating">
                                         <input type="file" class="form-control m-1" id="inputImgCandidates" name="image"  placeholder="imgCandidates" {{#if editMode}}{{#if
-                                        candidate.state}} {{else}} disabled {{/if}}{{/if}}>
+                                        candidate.state}} {{else}} disabled {{/if}}{{/if}} >
                                         <label for="inputImgCandidates"></label>
                                     </div>
                                 </div>
@@ -79,19 +79,19 @@
                         <a href="/admin/candidate-list" class="btn btn-outline-success float-end m-1 mt-5"
                             id="btn-cancel">Cancel</a>
                     </div>
-                    <form action="/admin/state-citizen" method="post">
+                    {{#if editMode}}
+                    <form action="/admin/state-candidate" method="post">
                         <input type="hidden" name="_csrf" value="{{csrfToken}}" />
 
                         <input type="hidden" name="id" value="{{candidate.id}}">
                         <input type="hidden" name="state" value="{{#if candidate.state}} 0 {{else}} 1 {{/if}}">
                         <div>
-                            {{#if editMode}}
                             <button type="submit" class="btn btn-outline-success float-start m-1 mt-5" {{#if
                                 candidate.state}}id="btn-disable" {{else}}id="btn-enable" {{/if}}>{{#if
                                 candidate.state}}Disable{{else}}Enable{{/if}}</button>
-                            {{/if}}
                         </div>
                     </form>
+                    {{/if}}
                 </div>
             </div>
         </div>

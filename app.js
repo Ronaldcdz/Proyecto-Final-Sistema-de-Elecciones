@@ -12,6 +12,7 @@ const Parties = require("./models/Parties");
 const candidate = require("./models/Candidate");
 const Users = require("./models/Users");
 const UserType = require("./models/UserType");
+const Election = require("./models/election");
 
 // Importando variable multer para el manejo de subida de archivos
 const multer = require("multer");
@@ -40,6 +41,7 @@ const electivePositionRoute = require("./routes/admin/electivePosition");
 const partiesRoute = require("./routes/admin/parties");
 const candidateRoute = require("./routes/admin/candidate");
 const citizenRoute = require("./routes/admin/users");
+const electionRoute = require("./routes/admin/election");
 
 // Configurando el engine (motor de renderización de vistas)
 app.engine("hbs", expressHbs({
@@ -117,8 +119,9 @@ app.use("/admin", partiesRoute);                        // Midllewarre para los 
 
 app.use("/admin", candidateRoute);                  //Midllewarre para los candidatos
 
-
 app.use("/admin", citizenRoute);
+
+app.use("/admin", electionRoute);
 
 // Importando el controlador de error
 const errorController = require("./controllers/ErrorController");

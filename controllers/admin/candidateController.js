@@ -29,7 +29,8 @@ exports.GetAddCandidate = (req, res, next) => {
             res.status(200).render("admin/candidates/add-candidate", {
                 pageTitle: "Add candidate",
                 parties: partiesData,
-                position: positionData
+                position: positionData,
+                editMode: false
             })
 
         }).catch((err) => {
@@ -87,8 +88,8 @@ exports.GetEditCandidate = (req, res, next) => {
 //POST Methods
 
 exports.PostCreateCandidate = (req, res, next) => {
-    const candidateName = req.body.Name;
-    const candidateLastName = req.body.LastName;
+    const candidateName = req.body.name;
+    const candidateLastName = req.body.lastName;
     const candidateIdParties = req.body.Parties;
     const candidateIdPosition = req.body.Position;
     const imgProfilePicture = req.file;
@@ -122,4 +123,15 @@ exports.PostEditCandidate = (req, res, next) => {
         }).catch((err) => {
             console.log(err);
         });
+}
+
+exports.PostStateCandidate = (req, res, next) => {
+    const state = req.body.state;
+    const idCandidate = req.body.id;
+
+    candidates.update({state: state}, {where: {id: idCandidate}}).then(() => {
+        res.status(302).redirect("/admin/candidate-list");
+    }).catch((err) => {
+        console.log(err);
+    });
 }

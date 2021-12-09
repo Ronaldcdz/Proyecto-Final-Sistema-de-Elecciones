@@ -95,8 +95,7 @@ exports.PostEditElectivePosition = (req, res, next) => {
 
     const electivePositionName = req.body.name;
     const electivePositionDescription = req.body.description;
-    const electivePositionId = req.body.electivePositionId;
-    const electivePositionState = (req.body.selectState == "Activo") ? true : false;       // Usando un Operador condicional (ternario)
+    const electivePositionId = req.body.electivePositionId;      // Usando un Operador condicional (ternario)
     
     ElectivePosition.update(
 

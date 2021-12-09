@@ -1,9 +1,8 @@
-//E.N 
 const Sequelize = require("sequelize");
 
 const sequelize = require("../util/database");
 
-const candidate = sequelize.define("candidate", {
+const election = sequelize.define("Election", {
 
     id:{
         type: Sequelize.INTEGER,
@@ -17,21 +16,16 @@ const candidate = sequelize.define("candidate", {
         allowNull: false
     },
 
-    lastName: {
+    date:{
         type: Sequelize.STRING,
         allowNull: false
     },
 
-    imgProfile: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-
-    state: {
+    state:{
         type: Sequelize.BOOLEAN,
         allowNull: false
     }
-});
 
-module.exports = candidate;
-//E.N
+})
+
+module.exports = election;

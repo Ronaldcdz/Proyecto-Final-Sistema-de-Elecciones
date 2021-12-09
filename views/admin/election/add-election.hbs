@@ -1,0 +1,61 @@
+ <main>
+ <div class="row">
+        <div class="col-md-12 text-center">
+            {{#if editMode}}
+                <h3 class="mt-5">Edit election</h3>
+            {{else}}
+                <h3 class="mt-5">Add election</h3>
+            {{/if}}
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-5">
+                        <div class="col-md-6 offset-3">
+                            <div class="shadow card">
+                                <div class="card-body">
+                                    {{#if editMode}}
+                                        <div class="float-end">
+                                            {{#if election.state}}
+                                                <i class='text-success bx bxs-circle'></i>
+                                            {{else}}
+                                                <i class='text-secondary bx bxs-circle'></i>
+                                            {{/if}}
+                                        </div>
+                                    {{/if}}
+                                    <form action="{{#if editMode}}/admin/edit-election{{else}}/admin/add-election{{/if}}" method="POST">
+                                        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputElectivePosition" name="name" placeholder="Name" value="{{#if editMode}}{{election.name}}{{/if}}" {{#if editMode}}{{#if election.state}} {{else}} disabled {{/if}}{{/if}}>
+                                                    <label for="inputElectivePosition">Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-floating">
+                                                    <input required type="text" class="form-control m-1" id="inputDate" name="date" placeholder="date" value="{{#if editMode}}{{election.date}}{{/if}}{{dateNow}}" {{#if editMode}}{{else}}readonly{{/if}} {{#if election.state}}{{else}}disabled{{/if}}>
+                                                    <label for="inputDate">Date</label>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="id" value="{{election.id}}">
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success float-end m-1 mt-5" id="btn-next" {{#if editMode}}{{#if election.state}} {{else}} disabled {{/if}}{{/if}}>Save</button>
+                                    </form>
+                                        <div>
+                                            <a href="/admin/election-list" class="btn btn-outline-success float-end m-1 mt-5" id="btn-cancel">Cancel</a>
+                                        </div>
+                                    {{#if editMode}}
+                                        <form action="/admin/state-election" method="post">
+                                            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+                                            <input type="hidden" name="id" value="{{election.id}}">
+                                            <input type="hidden" name="state" value="{{#if election.state}} 0 {{else}} 1 {{/if}}">
+                                            <div>
+                                                <button type="submit" class="btn btn-outline-success float-start m-1 mt-5" {{#if election.state}}id="btn-disable"{{else}}id="btn-enable"{{/if}}>{{#if election.state}}Disable{{else}}Enable{{/if}}</button>
+                                            </div>
+                                        </form>
+                                    {{/if}}
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+</main>
