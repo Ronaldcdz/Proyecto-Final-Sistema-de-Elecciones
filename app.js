@@ -100,7 +100,7 @@ app.use((req, res, next) => {
     res.locals.hasErrorMessages = errors.length > 0;
     res.locals.isAdmin = req.session.isAdmin;
     res.locals.csrfToken = req.csrfToken();
-
+    
     next();
 });
 
