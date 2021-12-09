@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 {{!-- <div class="card">
                     <div class="card-body"> --}}
-                        <table class="table table-striped">
+                        <table class="table table-stripped">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -35,19 +35,13 @@
                                     <td class="pt-3">{{user.email}}</td>
                                     <td class="pt-3">{{user.documentid}}</td>
                                     <td class="text-center pt-3">
-                                        <form action="" method="post">
-                                            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
-
                                             {{#if user.state}}
                                             <i class='text-success bx bxs-circle'></i>
                                             {{else}}
                                             <i class='text-secondary bx bxs-circle'></i>
                                             {{/if}}
-                                        </form>
                                     </td>
-                                    <td class="text-end"><a href="/admin/save-citizen/{{user.id}}"
-                                            class="me-3 btn-table btn btn-white"><i class='bx bx-edit-alt'></i></a>
-                                        <form method="POST" action="/admin/delete-citizen/{{user.id}}">
+                                    <td class="text-end"><a href="/admin/save-citizen/{{user.id}}" class="me-3 btn-table btn btn-white"><i class='bx bx-edit-alt'></i></a>
                                     </td>
                                 </tr>
                             </tbody>

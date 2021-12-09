@@ -1,12 +1,17 @@
-<div class="row">
+<main>
+    <div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="mt-5">Add parties +</h3>
+            </div>
+        </div>
+        <hr>
+    </div>
+    
+</main>
 
     <div class="col-md-6 offset-3 mt-5" id="main-container">
-
-
-
         <div class="card">
-            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
-
             <div class="card-header text-light bg-dark">
                 <h4 class="text-center" name="datosPersonales">{{#if editMode}}Editar Partido
                     Pol&iacute;tico{{else}}Agregar Partido Pol&iacute;tico{{/if}}</h4>
@@ -17,7 +22,7 @@
                 <form enctype="multipart/form-data"
                     action="{{#if editMode}}/admin/parties/edit-parties{{else}}/admin/parties/add-parties{{/if}}"
                     method="POST">
-
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
                     <div class="mt-3 mb-3">
                         <label for="name" class="form-label">Nombre del Partido Pol&iacute;tico:</label>
                         <input type="text" id="name" class="form-control" maxlength="200"
@@ -70,12 +75,5 @@
 
             </div>
         </div>
-
-
-
-
-
-
-
 
     </div>

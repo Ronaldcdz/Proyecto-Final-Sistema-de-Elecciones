@@ -1,4 +1,39 @@
 <main>
+    <div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="mt-5">Parties</h3>
+                <a href="/admin/parties/add-parties" class="btn-add float-end"><i class='bx bxs-add-to-queue'></i></a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="row">
+        {{#each parties as |party|}}
+            <div class="col-md-4">
+                <div class="card shadow">
+                    {{#if party.state}}<i class='m-4 float-start text-success bx bxs-circle'> Active</i>{{else}}<i class='m-4 float-start text-secondary bx bxs-circle'> Inactive</i>{{/if}}
+                    <div class="text-center">
+                        <img id="img-parties" src="{{party.partylogo}}" class="card-img-top" alt="{{party.name}}">
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">{{party.name}}</li>
+                            <li class="list-group-item">{{party.description}}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex mx-0 float-end">
+                            <a href="/admin/parties/edit-parties/{{party.id}}?editMode=true" class="btn-edit-party btn btn-primary"><i class='bx bx-edit-alt'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</main>
+
+{{!-- <main>
 
     <div class="container-fluid">
 
@@ -52,4 +87,4 @@
 
             </div>
         </div>
-</main>
+</main> --}}

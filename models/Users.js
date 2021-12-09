@@ -49,6 +49,11 @@ const Users = sequelize.define("Users", {
         allowNull: false
     },
 
+    vote: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true
+    },
+
     resetToken : {
         type: Sequelize.STRING,
         allowNull : true

@@ -18,7 +18,6 @@ exports.GetElectivePosition = (req, res, next) => {
 
     }).catch((error) => {
         console.log("Acaba de ocurrir el siguiente error: " + error);
-
     })
 
 };
@@ -37,9 +36,10 @@ exports.GetCreateElectivePosition = (req, res, next) => {
 //Método del controlador encargado de devolver los datos del formulario de los Puestos Electivos cumpliendo con ciertas restricciones
 exports.PostCreateElectivePosition = (req, res, next) => {
 
-    const electivePositionName = req.body.name;
+    const electivePositionName = req.body.electivePosition;
     const electivePositionDescription = req.body.description;
     const electivePositionState = true;
+
     ElectivePosition.create(
         {
             name: electivePositionName,
@@ -65,9 +65,7 @@ exports.GetEditElectivePosition = (req, res, next) => {
     const electivePositionId = req.params.electivePositionId;
 
     if (!editMode) {
-
         res.status(302).redirect("/admin/elective-position");
-
     }
 
     ElectivePosition.findOne({ where: { id: electivePositionId } }).then((result) => {
@@ -76,7 +74,6 @@ exports.GetEditElectivePosition = (req, res, next) => {
 
         if (!electivePosition) {
             res.status(302).redirect("/admin/elective-position");
-
         }
 
         res.status(200).render("admin/elective-position-maintenance/add-elective-position",
@@ -84,15 +81,11 @@ exports.GetEditElectivePosition = (req, res, next) => {
                 pageTitle: "Editar Puesto Electivo",
                 editMode: editMode,
                 electivePosition: electivePosition
-
             })
 
-
     }).catch((error) => {
-
         console.log("Acaba de ocurrir el siguiente error: " + error);
     });
-
 
 };
 
@@ -102,9 +95,7 @@ exports.PostEditElectivePosition = (req, res, next) => {
 
     const electivePositionName = req.body.name;
     const electivePositionDescription = req.body.description;
-    const electivePositionId = req.body.electivePositionId;
-    const electivePositionState = (req.body.selectState == "Activo") ? true : false;       // Usando un Operador condicional (ternario)
-
+    const electivePositionId = req.body.electivePositionId;      // Usando un Operador condicional (ternario)
     
     ElectivePosition.update(
 
@@ -118,27 +109,17 @@ exports.PostEditElectivePosition = (req, res, next) => {
             console.log("Acaba de ocurrir el siguiente error: " + error);
 
         })
-
 };
 
 
 //Método del controlador encargado de borrar un Puesto Electivo seleccionado cumpliendo con ciertas restricciones
-exports.PostDeleteElectivePosition = (req, res, next) => {
+exports.PostDeleteElectivePosition = (req, res, next) =>{
+    const idElectivePosition = req.body.id;
+    const stateElectivePosition = req.body.state;
 
-    const electivePositionId = req.body.electivePositionId;
-
-    ElectivePosition.update(
-
-        { state: false },
-        { where: { id: electivePositionId } }).then(() => {
-
-            res.status(302).redirect("/admin/elective-position");
-
-        }).catch((error) => {
-
-            console.log("Acaba de ocurrir el siguiente error: " + error);
-
-        })
-
-
-};
+    ElectivePosition.update({state: stateElectivePosition}, {where: {id: idElectivePosition}}).then(() =>{
+        res.redirect("/admin/elective-position");
+    }).catch((err) =>{
+        console.log(err);
+    });
+}

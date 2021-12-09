@@ -1,5 +1,34 @@
 <main>
 
-<h1 class="mt-5 text-center">Bienvenido al home para votar por los candidatos</h1>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="mt-5">Citizen</h3>
+        </div>
+    </div>
+    <hr>
 
+    <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <i class='m-4 float-start text-success bx bxs-circle'></i>
+                    <div class="text-center">
+                        <img id="img-parties" src="/images/077b72de-90d8-4ba4-8bd1-7ec98c6cbc3f-201803231310431.png" class="card-img-top" alt="{{party.name}}">
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">{{party.name}}</li>
+                            <li class="list-group-item">{{party.description}}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex mx-0 float-end">
+                            <form action="/admin/parties/delete-parties" method="post" class="mx-2">
+                                <input type="hidden" value="{{this.id}}" name="partyId">
+                                <button type="submit" class="btn-selected-candidate btn float-middle"><i class='mt-1 bx bx-check'></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
 </main>
