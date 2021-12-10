@@ -8,6 +8,7 @@ const votesCandidates = sequelize.define("Votes", {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
+        primaryKey: true
     },
 
 })

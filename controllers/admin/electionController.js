@@ -64,6 +64,8 @@ exports.PostAddElection = (req, res, next) =>{
     const nameElection = req.body.name;
     const dateElection = req.body.date;
 
+    console.log(dateElection);
+
     election.create({
         name: nameElection, 
         date: dateElection,

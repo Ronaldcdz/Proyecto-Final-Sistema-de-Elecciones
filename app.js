@@ -13,6 +13,7 @@ const candidate = require("./models/Candidate");
 const Users = require("./models/Users");
 const UserType = require("./models/UserType");
 const Election = require("./models/election");
+const Votes = require("./models/votes");
 
 // Importando variable multer para el manejo de subida de archivos
 const multer = require("multer");
@@ -102,7 +103,7 @@ app.use((req, res, next) => {
     res.locals.hasErrorMessages = errors.length > 0;
     res.locals.isAdmin = req.session.isAdmin;
     res.locals.csrfToken = req.csrfToken();
-
+    
     next();
 });
 
@@ -132,6 +133,14 @@ candidate.belongsTo(Parties,{constraint: true, onDelete:"CASCADE"});
 Parties.hasMany(candidate);
 candidate.belongsTo(ElectivePosition,{constraint: true, onDelete:"CASCADE"});
 ElectivePosition.hasMany(candidate);
+
+Votes.belongsTo(candidate, {constraint: true, onDelete: "CASCADE"});
+candidate.hasMany(Votes);
+Votes.belongsTo(Users, {constraint: true, onDelete: "CASCADE"});
+Users.hasMany(Votes);
+
+
+
 // Creando el servidor en el puerto 8080 si se sincroniza la base de datos
 
 sequelize.sync().then(result => {
