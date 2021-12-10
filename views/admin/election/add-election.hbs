@@ -33,11 +33,9 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-floating">
-<<<<<<< HEAD
-                                                    <input required type="text" class="form-control m-1" id="inputDate" name="date" placeholder="date" value="{{#if editMode}}{{election.date}}{{/if}}{{dateNow}}" {{#if editMode}} {{else}}readonly{{/if}} {{#if election.state}} {{else}}{{/if}}>
-=======
+
                                                     <input required type="text" class="form-control m-1" id="inputDate" name="date" placeholder="date" value="{{#if editMode}}{{election.date}}{{/if}}{{dateNow}}" {{#if editMode}} {{#if election.state}} {{else}} disabled {{/if}}{{else}}readonly{{/if}} >
->>>>>>> 283835e317d50d5ed02043954aa1640c99c98a46
+
                                                     <label for="inputDate">Date</label>
                                                 </div>
                                             </div>
