@@ -23,7 +23,7 @@ body{
 }
 
 .navbar-nav{
-    margin-left: 800px;
+    margin-left: 900px;
     font-size: 18px;
 }
 
@@ -279,7 +279,7 @@ img{
 #img-votes{
     max-width: 100px;
     max-height: 100px;
-    border-radius: 50%;
+    border-radius: 5%;
 }
 
 .card-votes{
@@ -317,3 +317,33 @@ img{
     color: #EA5455;
 }
 /*ELECTIONS*/
+
+/*LOGIN*/
+
+#inputEmail{
+    border: solid 1px;
+}
+
+#inputPassword{
+    border: solid 1px;
+}
+
+#btn-sign-in{
+    border-radius: 20px;
+    background-color: #EA5455;
+    color: #EEEEEE;
+    transition: 0.5s;
+    border-color: #EEEEEE;
+}
+
+#btn-sign-in:hover{
+    border-radius: 10px;
+    background-color: #EEEEEE;
+    color: gray;
+}
+
+.card-header{
+    background-color: #EEEEEE;
+}
+
+/*LOGIN*/

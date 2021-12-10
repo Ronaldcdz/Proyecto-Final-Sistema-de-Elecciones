@@ -19,10 +19,10 @@ exports.GetCandidateList = (req, res , next) => {
 }
 
 exports.GetAddCandidate = (req, res, next) => {
-    parties.findAll().then((result) => {
+    parties.findAll({where: {state: 1}}).then((result) => {
         const partiesData = result.map((result) => result.dataValues);
 
-        position.findAll().then((result) => {
+        position.findAll({where: {state: 1}}).then((result) => {
 
             const positionData = result.map((result) => result.dataValues);
 
@@ -30,6 +30,8 @@ exports.GetAddCandidate = (req, res, next) => {
                 pageTitle: "Add candidate",
                 parties: partiesData,
                 position: positionData,
+                hasParties: partiesData.length > 0,
+                hasPosition: positionData.length > 0,
                 editMode: false
             })
 

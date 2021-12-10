@@ -24,13 +24,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    {{#if isAdmin}}
-                    {{else}}
-                        <a class="nav-link" id="aHome" aria-current="page" href="/">Home</a>
-                    {{/if}}
-                        <a class="nav-link" id="aFeatures" href="#">Election</a>
+
                     {{#if isAdmin}}
                         <a class="nav-link" id="aAdmin" href="/admin">Admin</a>
+                    {{/if}}
+                    {{#if isAuthenticated}}
+
+                    <form action="/logout" method="POST">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+                        <li class="ms-5 mt-1 nav-item float-end">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </li>
+
+                    </form>
+
+                    {{else}}
+                    <li class="nav-item float-end">
+                        <a class="nav-link active float-end" href="/login">Login</a>
+                    </li>
+
+                    <li class="nav-item float-end">
+                        <a class="nav-link active float-end" href="/signup">Registrate</a>
+                    </li>
+
                     {{/if}}
                 </div>
             </div>
@@ -58,26 +74,6 @@
 
                 CERRAR SESION CONDICION 
 
-                {{#if isAuthenticated}}
-
-                <form action="/logout" method="POST">
-
-                    <li class="nav-item float-end">
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </li>
-
-                </form>
-
-                {{else}}
-                <li class="nav-item float-end">
-                    <a class="nav-link active float-end" href="/login">Login</a>
-                </li>
-
-                <li class="nav-item float-end">
-                    <a class="nav-link active float-end" href="/signup">Registrate</a>
-                </li>
-
-                {{/if}}
             </ul>
             </ul>
 
